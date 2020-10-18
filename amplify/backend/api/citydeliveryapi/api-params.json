@@ -1,0 +1,68 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "citydeliverybackofficeabbb839a",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/items"
+        },
+        {
+            "name": "/tenants",
+            "lambdaFunction": "citydeliverybackofficeb3de8e51",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/tenants"
+        }
+    ],
+    "resourceName": "citydeliveryapi",
+    "apiName": "citydeliveryapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "citydeliverybackofficeabbb839a"
+        },
+        {
+            "lambdaFunction": "citydeliverybackofficeb3de8e51"
+        }
+    ],
+    "privacy": {
+        "auth": 2,
+        "unauth": 0,
+        "authRoleName": "amplify-authcra-devr-121834-authRole",
+        "unAuthRoleName": "amplify-authcra-devr-121834-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "citydeliverybackofficeabbb839a",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "citydeliverybackofficeb3de8e51",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

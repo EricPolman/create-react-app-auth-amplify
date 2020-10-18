@@ -1,8 +1,65 @@
 {
-	"auth": {
-		"cognitocf0c6096": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+  "auth": {
+    "cognitocf0c6096": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "function": {
+    "citydeliverybackofficeabbb839a": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    },
+    "citydeliverybackofficeb3de8e51": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "citydeliverytenants",
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "attributeEnvMap": {
+            "Name": "TABLE_NAME",
+            "Arn": "TABLE_ARN"
+          }
+        }
+      ]
+    }
+  },
+  "storage": {
+    "citydeliverytenants": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "api": {
+    "citydeliveryapi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "citydeliverybackofficeabbb839a",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "citydeliverybackofficeb3de8e51",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  }
 }

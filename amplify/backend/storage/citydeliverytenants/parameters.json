@@ -1,0 +1,5 @@
+{
+    "tableName": "citydeliverytenants",
+    "partitionKeyName": "tenants",
+    "partitionKeyType": "S"
+}
